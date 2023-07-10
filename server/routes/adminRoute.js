@@ -68,7 +68,6 @@ router.post("/login", async (req, res) => {
 
   router.post("/get-admin", async (req, res) => {
     try {
-      console.log(req.body);
       const admin = await Admin.findOne({
         _id: req.body.id,
       });
