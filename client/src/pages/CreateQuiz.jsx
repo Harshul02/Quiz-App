@@ -4,6 +4,7 @@ import axios from 'axios';
 
 const CreateQuiz = () => {
   const [name, setName] = useState('');
+  const [title, setTitle] = useState('');
 
   useEffect(() => {
     findUser();
@@ -66,6 +67,17 @@ const CreateQuiz = () => {
         ) : (
           <div>
             <h2>Create a Quiz</h2>
+            <hr />
+            <div className="mb-4 my-2">
+            <h4>Enter Title</h4>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+            </div>
             {questions.map((q, index) => (
               <div key={index} className="card mb-3">
                 <div className="card-body">
@@ -78,6 +90,7 @@ const CreateQuiz = () => {
               </div>
             ))}
             <div className="mb-3">
+            <h4>Question</h4>
               <input
                 type="text"
                 className="form-control"
