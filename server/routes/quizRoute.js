@@ -26,4 +26,20 @@ router.post('/create-quiz', async (req, res) => {
   }
 });
 
+router.get('/all-quizzes', async (req, res) => {
+    try {
+      const quizzes = await Quiz.find();
+      console.log(quizzes);
+      res.status(200).json({
+        success: true,
+        quizzes,
+      });
+    } catch (error) {
+      res.status(500).json({
+        success: false,
+        message: 'Failed to fetch quizzes.',
+      });
+    }
+  });
+
 module.exports = router;

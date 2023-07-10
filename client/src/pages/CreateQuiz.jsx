@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import axios from 'axios';
+import { useNavigate, Link } from 'react-router-dom';
 
 const CreateQuiz = () => {
   const [name, setName] = useState('');
   const [title, setTitle] = useState('');
-
+    const navigate = useNavigate();
   useEffect(() => {
     findUser();
   }, []);
@@ -48,9 +49,27 @@ const CreateQuiz = () => {
     setCorrectAnswers([]);
   };
 
-  const handleCreateQuiz = () => {
-    setQuizCreated(true);
+  const handleCreateQuiz = async () => {
+    try {
+      const quizData = {
+        title: title,
+        questions: questions,
+      };
+  
+      const response = await axios.post('/api/quiz/create-quiz', quizData);
+  
+      if (response.data.success) {
+        setQuizCreated(true);
+        navigate("/all-quiz");
+
+      } else {
+        console.error(response.data.message);
+      }
+    } catch (error) {
+      console.error(error.message);
+    }
   };
+  
 
   const handleOptionChange = (e, index) => {
     const updatedOptions = [...currentOptions];
@@ -66,6 +85,7 @@ const CreateQuiz = () => {
           <p className="alert alert-success">Quiz created successfully!</p>
         ) : (
           <div>
+          <Link to='/all-quiz'><button className='btn btn-primary text-light float-end'>All Quiz</button></Link>
             <h2>Create a Quiz</h2>
             <hr />
             <div className="mb-4 my-2">
