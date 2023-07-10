@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Navbar = () => {
-  const adminName = "John Doe";
-
+const Navbar = (props) => {
+  const adminName = props.user.firstname + ' ' + props.user.lastname;
+    console.log(adminName);
   const handleLogout = () => {
     // Handle logout logic here
   };

@@ -1,12 +1,35 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
+import axios from "axios";
 
 const CreateQuiz = () => {
   const user = {
-    id: 1,
-    username: 'exampleUser',
-    name: 'John Doe',
+    firstname: '',
+    lastname: '',
   };
+
+  const findUser =async (e)=>{
+    try {
+        const id = localStorage.getItem("token");
+        const response = await axios.post("/api/admin/get-admin", {
+          id,
+        });
+        console.log(response.data.data.firstname);
+        if (response.data.success) {
+            user.firstname = response.data.data.firstname;
+            user.lastname = response.data.data.lastname;
+        } else {
+          console.error(response.data.message);
+        }
+      } catch (error) {
+        console.error(error.message);
+      }
+  }
+
+  useEffect(()=>{
+    findUser();
+  })
+
   const [questions, setQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState('');
   const [currentOptions, setCurrentOptions] = useState(['', '', '']);
@@ -39,7 +62,7 @@ const CreateQuiz = () => {
 
   return (
     <>
-    <Navbar />
+    <Navbar user={user}/>
     <div className="container py-5">
       {quizCreated ? (
         <p className="alert alert-success">Quiz created successfully!</p>
