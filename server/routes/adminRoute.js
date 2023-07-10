@@ -3,11 +3,10 @@ const router = express.Router();
 const Admin = require("../models/AdminModel");
 const bcrypt = require("bcryptjs");
 
-// register new employee
 
 router.post("/register", async (req, res) => {
   try {
-    const adminExists = await Employee.findOne({
+    const adminExists = await Admin.findOne({
       email: req.body.email,
     });
     if (adminExists) {
