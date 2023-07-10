@@ -29,7 +29,6 @@ router.post('/create-quiz', async (req, res) => {
 router.get('/all-quizzes', async (req, res) => {
     try {
       const quizzes = await Quiz.find();
-      console.log(quizzes);
       res.status(200).json({
         success: true,
         quizzes,
@@ -42,4 +41,19 @@ router.get('/all-quizzes', async (req, res) => {
     }
   });
 
+  router.post('/get-quiz', async (req, res) => {
+    try {
+      const quizId = req.body.quizid;
+      const quiz = await Quiz.findById(quizId);
+        console.log(quiz);
+      if (!quiz) {
+        return res.status(404).json({ success: false, message: 'Quiz not found' });
+      }
+  
+      return res.status(200).json({ success: true, quiz });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ success: false, message: 'Internal server error' });
+    }
+  });
 module.exports = router;
