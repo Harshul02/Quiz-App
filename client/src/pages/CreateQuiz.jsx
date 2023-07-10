@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Navbar from '../components/Navbar';
 
 const CreateQuiz = () => {
   const user = {
@@ -37,6 +38,8 @@ const CreateQuiz = () => {
   };
 
   return (
+    <>
+    <Navbar />
     <div className="container py-5">
       {quizCreated ? (
         <p className="alert alert-success">Quiz created successfully!</p>
@@ -118,6 +121,7 @@ const CreateQuiz = () => {
         </div>
       )}
     </div>
+    </>
   );
 };
 
