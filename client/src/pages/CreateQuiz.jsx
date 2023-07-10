@@ -19,6 +19,8 @@ const CreateQuiz = () => {
       correctAnswers,
     };
     setQuestions([...questions, newQuestion]);
+    console.log(questions);
+    console.log(newQuestion);
     setCurrentQuestion('');
     setCurrentOptions(['', '', '']);
     setCorrectAnswers([]);
@@ -70,13 +72,6 @@ const CreateQuiz = () => {
                 onChange={(e) => handleOptionChange(e, index)}
               />
             ))}
-            <button
-              type="button"
-              className="btn btn-primary mt-2"
-              onClick={handleAddQuestion}
-            >
-              Add Question
-            </button>
           </div>
           <div className="mb-3">
             <h3>Correct Answers</h3>
@@ -108,6 +103,14 @@ const CreateQuiz = () => {
           <button
             type="button"
             className="btn btn-primary"
+            onClick={handleAddQuestion}
+          >
+            Add Question
+          </button>
+          <br />
+          <button
+            type="button"
+            className="btn btn-primary float-end mt-2"
             onClick={handleCreateQuiz}
           >
             Create Quiz

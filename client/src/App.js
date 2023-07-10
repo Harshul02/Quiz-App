@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/Signup';
 import CreateQuiz from './pages/CreateQuiz';
+import QuizSharing from './pages/QuizSharing';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Route exact path='/' element={<Login />} />
         <Route exact path='/register' element={<Register />} />
         <Route exact path='/create-quiz' element={<CreateQuiz />} />
+        <Route exact path='/quizshare/:quizid' element={<QuizSharing />} />
       </Routes>
     </BrowserRouter>
   );
