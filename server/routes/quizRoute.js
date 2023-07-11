@@ -45,7 +45,6 @@ router.get('/all-quizzes', async (req, res) => {
     try {
       const quizId = req.body.quizid;
       const quiz = await Quiz.findById(quizId);
-        console.log(quiz);
       if (!quiz) {
         return res.status(404).json({ success: false, message: 'Quiz not found' });
       }
