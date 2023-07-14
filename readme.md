@@ -22,29 +22,27 @@ Following technologies and libraries are used for the development of this projec
 ### Running the project
 
 
-1. **Fork** and **clone** the project to your local system
-2.  `cd` into `client` and `server` directory and run:
+1. **Fork** the project
+2. **clone** the project to your local system
+```
+https://github.com/Harshul02/Quiz-App.git
+```
+
+3.  `cd` into `client` and `server` directory and run:
 
 ```
 npm i
 ```
 
-3. Now get the private key of you Mumbai testnet account from Metamask and set it in `web3/.env` file:
+4. To run the project, use
 ```
-PRIVATE_KEY = your key
+npm start
 ```
-4. To deploy the smart contract, in `web3` directory run the command:
-```
-npm run deploy
-```
-Follow the link, deploy the contract and copy the deployed address
+in `client` directory
 
-5. In `client/src/context/index.jsx` paste the address here:
+and
+```
+node index.js
+```
+in `server` directory
 
-```
-  const { contract } = useContract('your address');
-```
-6. Finally in `client` use command:
-```
-npm run dev
-```
